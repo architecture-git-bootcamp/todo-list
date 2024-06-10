@@ -1,47 +1,47 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <v-app :theme="theme">
+      <v-navigation-drawer>
+        <v-list>
+          <v-list-item title="Navigation drawer"></v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+      <v-app-bar class="px-3">
+        <v-spacer></v-spacer>
 
-  <main>
-    <TheWelcome />
-  </main>
+        <v-btn
+          :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
+          text="Toggle Theme"
+          slim
+          @click="onClick"
+        ></v-btn>
+      </v-app-bar>
+
+      <v-main>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+          <h1>Hallo Welt</h1>
+
+        </v-main>
+    </v-app>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup lang="ts">
+import { ref } from 'vue'
+
+type theme = "light" | "dark";
+
+const theme = ref<theme>('light')
+
+function onClick () {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+</script>

@@ -11,8 +11,10 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "pinia": "^2.1.7",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vuetify": "^3.6.8"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
