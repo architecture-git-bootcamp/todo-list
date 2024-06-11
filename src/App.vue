@@ -3,9 +3,9 @@
     <v-app :theme="theme">
       <v-navigation-drawer v-model="open"        
         :temporary="$vuetify.display.mobile"
->
+>         
         <img class="ml-4" src="/public/logo.svg">
-        <new-task />
+        <Menu />
       </v-navigation-drawer>
 
       <v-app-bar class="px-2" elevation="0">
@@ -29,8 +29,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import NewTask from './components/NewTask.vue';
 import TodoList from './components/TodoList.vue';
+// @ts-ignore
+import Menu from './components/Menu.vue';
 
 type Theme = "light" | "dark";
 
