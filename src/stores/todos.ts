@@ -1,4 +1,4 @@
-import { ref, computed, toDisplayString } from 'vue'
+import { ref, computed, toDisplayString, onMounted, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { Todo } from '@/types/todo'
 
@@ -9,9 +9,7 @@ export const useTodosStore = defineStore('todos', () => {
   const openTodos = computed(() => todos.value.filter(todo => todo.status === 'open'))
 
   function addTodo(todo: Todo) {
-
     todos.value.push(todo)
-    console.log(todos.value)
   }
 
   function deleteTodo(todoId: string) {
@@ -29,6 +27,14 @@ export const useTodosStore = defineStore('todos', () => {
       return todo
     })
   }
+
+  onMounted(()=> {
+    todos.value = JSON.parse(localStorage.getItem("todos") ?? '') ?? [];
+  })
+
+  watch(todos, () => {
+    localStorage.setItem("todos",JSON.stringify(todos.value))
+  }, {deep: true})
 
   return { todos, openTodos, addTodo, deleteTodo, markAsDone }
 })
