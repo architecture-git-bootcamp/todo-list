@@ -1,4 +1,5 @@
 <template>
+  <new-task />
   <v-list>
     <v-list-item v-for="todo in todosStore.todos" class="d-flex justify-sm-start"
       @click="todosStore.markAsDone(todo.id)">
@@ -30,6 +31,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { useTodosStore } from '../stores/todos';
+import NewTask from './NewTask.vue';
 
 const todosStore = useTodosStore()
 
