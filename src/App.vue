@@ -10,7 +10,7 @@
 
       <v-app-bar class="px-2" elevation="0">
         <v-btn v-if="$vuetify.display.mobile" icon="mdi-menu" @click="open = !open"></v-btn>
-        <h1>Übersicht</h1>
+        <h1>Dashboard</h1>
         <v-spacer></v-spacer>
 
         <v-btn
