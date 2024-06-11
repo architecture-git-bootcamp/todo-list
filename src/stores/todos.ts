@@ -9,20 +9,22 @@ export const useTodosStore = defineStore('todos', () => {
   const openTodos = computed(() => todos.value.filter(todo => todo.status === 'open'))
 
   function addTodo(todo: Todo) {
+
     todos.value.push(todo)
+    console.log(todos.value)
   }
 
   function deleteTodo(todoId: string) {
-    todos.value.filter(todo => todo.id !== todoId)
+    todos.value = todos.value.filter(todo => todo.id !== todoId)
   }
 
   function markAsDone(todoId: string) {
-    todos.value.map(todo => {
+    todos.value = todos.value.map(todo => {
       if (todo.id == todoId) {
         return {
           ...todo,
           status: 'done'
-        }
+        } as Todo
       }
       return todo
     })
