@@ -30,7 +30,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import TodoList from './components/TodoList.vue';
-import Menu from '@/components/Menu.vue';
+// @ts-ignore
+import Menu from './components/Menu.vue';
 
 type Theme = "light" | "dark";
 
