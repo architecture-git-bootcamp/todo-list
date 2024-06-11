@@ -1,10 +1,10 @@
 <template>
                   <v-list-item-group>
                     <v-list-item v-for="(todo, i) in todosStore.todos">
-                      <template #default="{ active, toggle }">
+                      <template >
                         <v-list-item-action>
 
-                          <v-checkbox v-model="active" @click="toggle"></v-checkbox>
+                          <v-checkbox :model-value="todo.status == 'done'" @click="todosStore.markAsDone(todo.id)"></v-checkbox>
                         </v-list-item-action>
 
                         <v-list-item-content>

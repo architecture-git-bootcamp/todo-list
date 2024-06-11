@@ -16,5 +16,17 @@ export const useTodosStore = defineStore('todos', () => {
     todos.value.filter(todo => todo.id !== todoId)
   }
 
-  return { todos, openTodos, addTodo, deleteTodo }
+  function markAsDone(todoId: string) {
+    todos.value.map(todo => {
+      if (todo.id == todoId) {
+        return {
+          ...todo,
+          status: 'done'
+        }
+      }
+      return todo
+    })
+  }
+
+  return { todos, openTodos, addTodo, deleteTodo, markAsDone }
 })
