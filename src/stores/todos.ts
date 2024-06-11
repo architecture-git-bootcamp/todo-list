@@ -29,7 +29,7 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   onMounted(()=> {
-    todos.value = JSON.parse(localStorage.getItem("todos"))
+    todos.value = JSON.parse(localStorage.getItem("todos") ?? '') ?? [];
   })
 
   watch(todos, () => {
