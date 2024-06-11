@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, toDisplayString } from 'vue'
 import { defineStore } from 'pinia'
 import type { Todo } from '@/types/todo'
 
@@ -13,7 +13,7 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   function deleteTodo(todoId: string) {
-
+    todos.value.filter(todo => todo.id !== todoId)
   }
 
   return { todos, openTodos, addTodo, deleteTodo }
