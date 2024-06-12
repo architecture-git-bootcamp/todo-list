@@ -7,7 +7,6 @@
         </v-list-item>
         <v-list-item class="d-flex justify-sm-start" :class="selectedMenuEntry == 'open' ? 'menu-active' : ''" @click="selectedMenuEntry = 'open'">Offen
         </v-list-item>
-        {{ selectedMenuEntry }}
       </v-navigation-drawer>
 
       <v-app-bar class="px-2" elevation="0">
