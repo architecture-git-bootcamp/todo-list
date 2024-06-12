@@ -8,6 +8,15 @@ export const useTodosStore = defineStore('todos', () => {
 
   const openTodos = computed(() => todos.value.filter(todo => todo.status === 'open'))
 
+  const selectedMenuEntry = ref<'all' | 'open'>('all')
+
+   const dynamicTodos = computed(()=> {
+    if (selectedMenuEntry.value == 'all') {
+      return todos.value
+    }
+    return todos.value.filter(todo => todo.status == 'open')
+  })
+
   function addTodo(todo: Todo) {
     todos.value.push(todo)
   }
@@ -36,5 +45,5 @@ export const useTodosStore = defineStore('todos', () => {
     localStorage.setItem("todos",JSON.stringify(todos.value))
   }, {deep: true})
 
-  return { todos, openTodos, addTodo, deleteTodo, markAsDone }
+  return { todos, openTodos, addTodo, deleteTodo, markAsDone, selectedMenuEntry, dynamicTodos }
 })
