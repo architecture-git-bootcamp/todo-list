@@ -20,6 +20,8 @@
       <v-main>
         <v-text-field v-model="newTodo" id="newTodo" name="newTodo" label="Aufgabe eingeben" @keyup.enter="addTodo"
           persistent-hint />
+          <v-text-field v-model="newTodoAsignee" id="newTodoAsignee" name="newTodoAsignee" label="Bearbeiter eingeben" @keyup.enter="addTodo"
+          persistent-hint />
         <v-btn prepend-icon="mdi-plus" block variant="tonal" color="green" @click="addTodo">Hinzufügen</v-btn>
         <v-list>
           <v-list-item v-for="todo in todos" class="d-flex justify-sm-start">
@@ -41,6 +43,7 @@
                 </strike>
               </v-list-item-title>
               <v-list-item-subtitle>Added on: {{ todo.createdAt }}</v-list-item-subtitle>
+              <v-list-item-subtitle>Asignee: {{ todo.asignee }}</v-list-item-subtitle>
             </div>
             <div></div>
           </v-list-item>
@@ -61,6 +64,7 @@ type Todo = {
   createdAt: Date;
   status: 'open' | 'done';
   title: string;
+  asignee: string;
 }
 
 
@@ -73,6 +77,7 @@ function capitalize(value: string) {
 
 
 const newTodo = ref('')
+const newTodoAsignee = ref('')
 
 const todos = ref<Todo[]>([])
 
@@ -85,7 +90,8 @@ function addTodo() {
       id: Math.random().toString(),
       createdAt: new Date(),
       status: 'open',
-      title: newTodo.value
+      title: newTodo.value,
+      asignee: newTodoAsignee.value
     }
   )
 }
