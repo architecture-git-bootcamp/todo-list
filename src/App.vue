@@ -3,10 +3,11 @@
     <v-app :theme="theme">
       <v-navigation-drawer v-model="open" :temporary="$vuetify.display.mobile">
         <img class="ml-4" src="/public/logo.svg">
-        <v-list-item class="d-flex justify-sm-start" @click="">Todo
+        <v-list-item class="d-flex justify-sm-start" :class="selectedMenuEntry == 'all' ? 'menu-active' : ''"  @click="selectedMenuEntry = 'all'">Alle
         </v-list-item>
-        <v-list-item class="d-flex justify-sm-start" @click="">Done
+        <v-list-item class="d-flex justify-sm-start" :class="selectedMenuEntry == 'open' ? 'menu-active' : ''" @click="selectedMenuEntry = 'open'">Offen
         </v-list-item>
+        {{ selectedMenuEntry }}
       </v-navigation-drawer>
 
       <v-app-bar class="px-2" elevation="0">
@@ -22,7 +23,7 @@
           persistent-hint />
         <v-btn prepend-icon="mdi-plus" block variant="tonal" color="green" @click="addTodo">Hinzufügen</v-btn>
         <v-list>
-          <v-list-item v-for="todo in todos" class="d-flex justify-sm-start">
+          <v-list-item v-for="todo in dynamicTodos" class="d-flex justify-sm-start">
             <template #prepend>
               <v-checkbox v-if="todo.status == 'open'" @click="markAsDone(todo.id)" hide-details></v-checkbox>
 
@@ -51,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import { watch } from 'vue';
 
@@ -76,8 +77,16 @@ const newTodo = ref('')
 
 const todos = ref<Todo[]>([])
 
+const selectedMenuEntry = ref<'all' | 'open'>('all')
+
 watch(todos, () => console.log(todos.value), { deep: true });
 
+const dynamicTodos = computed(()=> {
+  if (selectedMenuEntry.value == 'all') {
+    return todos.value
+  }
+  return todos.value.filter(todo => todo.status == 'open')
+})
 
 function addTodo() {
   todos.value.push(
@@ -127,3 +136,9 @@ function toggleTheme() {
   theme.value = theme.value === 'light' ? 'dark' : 'light'
 }
 </script>
+
+<style scoped>
+.menu-active {
+  background-color: rgba(43, 49, 54, 0.474);
+}
+</style>
