@@ -2,7 +2,7 @@
   <new-task />
   <v-list>
     <v-list-item v-for="todo in todosStore.todos" class="d-flex justify-sm-start"
-      @click="todosStore.markAsDone(todo.id)">
+      >
       <template #prepend>
         <v-checkbox v-if="todo.status == 'open'" @click="todosStore.markAsDone(todo.id)" hide-details></v-checkbox>
 
