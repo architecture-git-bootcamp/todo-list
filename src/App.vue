@@ -51,11 +51,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { watch } from 'vue';
 
-import type { Todo } from './types/todo';
+
+type Todo = {
+  id: string;
+  createdAt: Date;
+  status: 'open' | 'done';
+  title: string;
+}
 
 
 function capitalize(value: string) {
