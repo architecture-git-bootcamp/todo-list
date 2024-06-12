@@ -1,5 +1,6 @@
 <template>
     <v-text-field v-model="newTodo" id="newTodo" name="newTodo" label="Aufgabe eingeben" @keyup.enter="addTodo" persistent-hint />
+    <v-text-field v-model="newTodoAsignee" id="newTodoAsignee" name="newTodoAsignee" label="Bearbeiter eingeben" @keyup.enter="addTodo" persistent-hint />
     <v-btn prepend-icon="mdi-plus" block variant="tonal" color="green" @click="addTodo">Hinzufügen</v-btn>
 </template>
 
@@ -9,6 +10,7 @@ import {ref} from 'vue'
 
 const todoStore = useTodosStore()
 const newTodo = ref('')
+const newTodoAsignee = ref('')
 
 const addTodo = () => {
     todoStore.addTodo(
@@ -16,7 +18,8 @@ const addTodo = () => {
             id: Math.random().toString(),
             createdAt: new Date(),
             status: 'open',
-            title: newTodo.value
+            title: newTodo.value,
+            asignee: newTodoAsignee.value
         }
     )
 }
