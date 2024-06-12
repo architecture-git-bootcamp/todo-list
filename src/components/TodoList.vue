@@ -22,6 +22,7 @@
           </strike>
         </v-list-item-title>
         <v-list-item-subtitle>Added on: {{ todo.createdAt }}</v-list-item-subtitle>
+        <v-list-item-subtitle>Asignee: {{ todo.asignee }}</v-list-item-subtitle>
       </div>
       <div></div>
     </v-list-item>
